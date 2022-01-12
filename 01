@@ -1,3 +1,29 @@
-http://localhost:8153/go/pipelines?new_pipeline_name=mypipe#!/
-
-text:
+format_version: 10
+pipelines:
+  mypipeline3:
+    group: myfirstpipeline1
+    label_template: ${COUNT}
+    lock_behavior: none
+    display_order: -1
+    materials:
+      git-e8b0bcc:
+        git: https://github.com/mrrsr/awesome.git
+        shallow_clone: false
+        auto_update: true
+        branch: master
+        encrypted_password: AES:bslxuyZduqFfJDXG1+u9qA==:QBXQavC7h32Hb4o8tXNnHw==
+    stages:
+    - runtest:
+        fetch_materials: true
+        keep_artifacts: false
+        clean_workspace: false
+        approval:
+          type: success
+          allow_only_on_success: false
+        jobs:
+          job1:
+            timeout: 0
+            tasks:
+            - exec:
+                command: success
+                run_if: passed
