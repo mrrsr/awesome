@@ -1,0 +1,10 @@
+#JSON Validator function
+import json
+
+def json_validator(data):
+    try:
+        json.loads(data)
+        return True
+    except ValueError as error:
+        print("invalid json: %s" % error)
+        return False
